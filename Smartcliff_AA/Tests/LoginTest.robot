@@ -9,3 +9,4 @@ Resource    ../Resourcers/GenericResources.robot
 *** Test Cases ***
 Login with common user credentials
     loginPage.Login with valid credentials    ${common_user}    ${common_password}
+    Page Should Contain    Dhanusheswaran!
