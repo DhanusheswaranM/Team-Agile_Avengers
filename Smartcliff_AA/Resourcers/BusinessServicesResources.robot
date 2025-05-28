@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 Resource    ../Resourcers/LoginPage.robot
 Resource    ../Resourcers/HomePage.robot
 
+
 *** Variables ***
 ${businessService_text}    xpath=//h4[text()='Business Service Panel']
 ${IMAGE_PATH}    ${CURDIR}${/}images${/}superman-justice-league-2017-zack-snyder-s-justice-league-hd-wallpaper-3b359d9226042a5b59ace600fdcd5400.jpg
@@ -63,6 +64,7 @@ Add new business service
     Should Be Equal    ${text}    ${new_business_service_name}
     Click Button    xpath=(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1h48b3'])[8]
     Click Button    xpath=//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium css-1ecefdc']
+    Wait Until Element Is Not Visible    xpath=//td[text()='${new_business_service_name}']
 
 search Business Service
     [Arguments]    ${business_service_name}
@@ -73,6 +75,20 @@ search Business Service
     Wait Until Element Is Visible    xpath=//td[text()='${business_service_name}']
     ${text}=    Get Text    xpath=//td[text()='${business_service_name}']
     Should Be Equal    ${text}    ${business_service_name}
+
+verify whether the rows per page is working
+    [Arguments]    ${rows_per_page}
+    HomePage.Click the Home Button
+    HomePage.Click the Service Button
+    HomePage.Click the Business Services
+    Scroll Element Into View    xpath=//input[@class='MuiSelect-nativeInput css-1k3x8v3']
+    Click Element    xpath=//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input css-rmmij8']
+    Click Element    xpath=//li[@data-value="${rows_per_page}"]
+    ${text}=    Get Element Count    xpath=//tr[@class='MuiTableRow-root MuiTableRow-hover css-1gqug66']
+    Should Be Equal As Integers    ${text}    ${rows_per_page}
+
+
+
 
 
 
