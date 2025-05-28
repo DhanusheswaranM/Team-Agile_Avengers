@@ -4,7 +4,7 @@ Library    SeleniumLibrary
 Test Setup    Open the website with the browser
 Test Teardown    Close Browser Session
 Resource    ../Resourcers/GenericResources.robot
-Resource    ../Resourcers/LoginPage.robot
+# Resource    ../Resourcers/LoginPage.robot
 
 *** Test Cases ***
 Login with common user credentials
