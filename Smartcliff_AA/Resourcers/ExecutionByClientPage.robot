@@ -3,7 +3,7 @@ Documentation    This resource file is for reusable keywords and variables for E
 Library    SeleniumLibrary
 
 *** Variables ***
-${search_Highlight}    xpath://input[@id=':r7b:']
+${search_Highlight}    xpath://input[@placeholder='Search execution highlights...']
 ${add_Highlight}    xpath://div[@id='root']/div[1]/main/div[2]/div[1]/div/div[2]/button
 ${stack}    xpath://main[@class='MuiBox-root css-zxdg2z']/main/div[2]/form/div/div[3]/div/div/input
 # ${stack}    xpath:(//div[@class='MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-feqhe6'])[3]/div/input
@@ -14,6 +14,7 @@ ${image_path}    ${CURDIR}${/}Images${/}ThorHammer.jpg
 ${stack_field}    css:input[id='stack']
 ${stack_count_field}    css:input[id='count']
 ${submit_highlight_btn}    xpath://button[@type='submit']
+${dropDown_Number}    xpath://div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-wuddwm']/div[2]/div/div[2]/div
 
 
 
@@ -53,7 +54,6 @@ Add New Execution By Client
     [Arguments]    ${business_service_name}    ${service_name}    ${stack_naming}    ${stack_count}
     Select From Autocomplete    ${business_service_field}    ${business_service_name}
     Select From Autocomplete    ${service_Field}    ${service_name}
-    # Click Element    ${drop_zone}
     ${filepath} =    Set Variable    css:input[type="file"][accept="image/*"]
 
     Choose File    ${filePath}    ${image_path}
@@ -71,6 +71,29 @@ Select From Autocomplete
 
 Searching the stack Name 
     [Arguments]    ${Search_stack_name}
-    Click Element    ${search_Highlight}
+    # Click Element    ${search_Highlight}
+    # Execute JavaScript    arguments[0].click();    ${search_Highlight}
     Input Text    ${search_Highlight}    ${Search_stack_name}
     Page Should Contain    ${Search_stack_name}
+
+Validate Rows Per Page 
+    [Arguments]    ${Table_Count}
+    Scroll Element Into View    ${dropDown_Number}
+    Click Element    ${dropDown_Number}
+    # ${i} =    Set Variable    1
+    # @{list_Of_Rows} =    Get WebElements    xpath://ul[@id=':r4:']
+    # FOR    ${Count_Table}    IN    @{list_Of_Rows}
+    #     ${Number} =    Get Text    ${Count_Table}
+    #     IF    '${Number}' == '${Count_Table}'
+    #         Click Element    xpath://ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li[${i}]
+    #         BREAK
+    #     END
+    #     ${i} =    Evaluate    ${i}+1
+    # END
+    Click Element    xpath://ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li[1]
+    Sleep    3s
+
+Count Of Table
+    ${table} =    Set Variable   xpath://tbody[@class='MuiTableBody-root css-1xnox0e']/tr
+    ${length_Table} =    Get Length    ${table}
+    Return From Keyword    ${length_Table}
