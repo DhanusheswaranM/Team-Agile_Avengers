@@ -15,6 +15,7 @@ Open the website with the browser
     Open Browser    ${url}    ${browser}
     Maximize Browser Window
     Set Browser Implicit Wait    10s
+    Set Selenium Implicit Wait    10s
 
 Login with valid credentials
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
