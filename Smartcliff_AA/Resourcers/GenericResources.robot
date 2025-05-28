@@ -12,8 +12,7 @@ ${common_password}    dhyula@333
 *** Keywords ***
 
 Open the website with the browser
-    Create Webdriver    ${browser}
-    Go To    ${url}
+    Open Browser    ${url}    ${browser}
     Maximize Browser Window
     Set Browser Implicit Wait    10s
 
