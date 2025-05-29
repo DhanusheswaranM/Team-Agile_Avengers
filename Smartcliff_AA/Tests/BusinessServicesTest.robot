@@ -21,7 +21,7 @@ add Business Service
 
 search already existing business service
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
-    BusinessServicesResources.search Business Service    "new business service name"
+    BusinessServicesResources.search Business Service    B2B
 
 validate rows per page
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
