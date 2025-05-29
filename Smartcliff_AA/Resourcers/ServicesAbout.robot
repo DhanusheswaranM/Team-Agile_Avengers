@@ -21,6 +21,7 @@ ${img_path}     ${CURDIR}${/}Images${/}image.png
 ${img}    //*[@id="root"]/div[1]/main/main/form/div/div[5]/div/div/div[4]/div/div[1]/svg
 ${demo_desc}    //textarea[@name="description"]
 ${confirm_dlt}    //button[contains(text(),'Delete')]
+${edit_specific}    (//div[@class='MuiBox-root css-1i27l4i'])[1]//button[1]
 
 ***keywords***
 Open the Services About page 
@@ -65,6 +66,12 @@ Upload Image File
     Sleep    5
     Click Button    ${submit_btn}  
 
+Click on the results edit button 
+    Click Element    ${edit_specific}
+
+Search edit heading in the searchbox 
+    Input Text       ${search_box}    DemoHeading
+
 verify the data added
     Page Should Contain    DemoHeading   
 
@@ -87,7 +94,7 @@ Edit the value of the feature title
     
 verify page is updated
     Set Selenium Implicit Wait    5   
-    Page Should Contain    This is edited feature file        
+    Page Should Contain    This is edited feature title         
 
 verify the data deleted
     Page Should Not Contain    DemoHeading
