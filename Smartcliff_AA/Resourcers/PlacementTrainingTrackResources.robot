@@ -77,7 +77,7 @@ Deleting the track name
     @{list_of_track_placement} =    Get WebElements    xpath://tbody[@class='MuiTableBody-root css-1xnox0e']/tr/td[2]
 
     ${i} =    Set Variable    1
-    FOR    ${track_placement}    IN    ${list_of_track_placement}
+    FOR    ${track_placement}    IN    @{list_of_track_placement}
         ${remove_text} =    Get Text    ${track_placement}
         Log To Console    >>>>${remove_text}
         IF    '${remove_text}' == '${track_name_remove}'
