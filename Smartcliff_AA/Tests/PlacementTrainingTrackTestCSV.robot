@@ -27,6 +27,7 @@ ${module_remark}
 
 *** Test Cases ***
 Adding the new Placement Tracking
+    [Tags]    Sanity
     ${business_service_name}    ${service_name}    ${track_name}    ${proposed_hours}    ${no_of_days}    ${semester}    ${objective}    ${module_name}    ${module_hours}    ${module_no_of_days}    ${module_level}    ${module_training_hours}    ${module_training_days}    ${module_remark}
 
 *** Keywords ***
