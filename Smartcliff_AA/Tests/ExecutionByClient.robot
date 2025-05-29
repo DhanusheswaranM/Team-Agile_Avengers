@@ -51,7 +51,7 @@ Add new Execution By Client
     ExecutionByClientPage.Add New Execution By Client    ${business_service_name}    ${service_name}    ${stack_naming}    ${stack_count}
 
 Search the Stack Name
-    [Tags]    UAT
+    [Tags]    Sanity
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
     HomePage.Click the Home Button
     HomePage.Click the Service Button
@@ -60,12 +60,25 @@ Search the Stack Name
     ExecutionByClientPage.Searching the stack Name    ${search_stack_name}
 
 Validate Rows Per Page in Execution By Client
-    [Tags]    Sanity
+    [Tags]    UAT
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
     HomePage.Click the Home Button
     HomePage.Click the Service Button
     HomePage.Click the Execution By Client
     Page Should Contain    Execution Highlights Control
     ExecutionByClientPage.Validate Rows Per Page    ${Table_Count}
-    ${actual_count} =    ExecutionByClientPage.Count Of Table
+    ${actual} =    ExecutionByClientPage.Count Of Table
+    ${actual_count} =    Convert To String    ${actual}
     Should Be Equal    ${actual_count}    ${Table_Count}
+
+Validate Navigating back from add execution by client to servicepage
+    [Tags]    Sanity
+    LoginPage.Login with valid credentials    ${common_user}    ${common_password}
+    HomePage.Click the Home Button
+    HomePage.Click the Service Button
+    HomePage.Click the Execution By Client
+    ExecutionByClientPage.Click the Add Highlights
+    Page Should Contain    Add Form
+    ExecutionByClientPage.Navigating Back
+    Page Should Contain    Execution Highlights Control
+

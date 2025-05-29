@@ -15,7 +15,7 @@ ${stack_field}    css:input[id='stack']
 ${stack_count_field}    css:input[id='count']
 ${submit_highlight_btn}    xpath://button[@type='submit']
 ${dropDown_Number}    xpath://div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-wuddwm']/div[2]/div/div[2]/div
-
+${back_Option}    xpath://div[@class='MuiBox-root css-1dfbuxp']/button
 
 
 *** Keywords ***
@@ -95,5 +95,8 @@ Validate Rows Per Page
 
 Count Of Table
     ${table} =    Set Variable   xpath://tbody[@class='MuiTableBody-root css-1xnox0e']/tr
-    ${length_Table} =    Get Length    ${table}
+    ${length_Table} =    Get Element Count    ${table}
     Return From Keyword    ${length_Table}
+
+Navigating Back
+    Click Element    ${back_Option}
