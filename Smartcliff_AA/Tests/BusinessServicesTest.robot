@@ -26,4 +26,7 @@ search already existing business service
 validate rows per page
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
     BusinessServicesResources.verify whether the rows per page is working    5
-    
+
+print business service
+    LoginPage.Login with valid credentials    ${common_user}    ${common_password}
+    BusinessServicesResources.Storing the Business Service names in list and printing them

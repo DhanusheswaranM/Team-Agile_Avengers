@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    This resources file is for resuable keywords and variables for Business Services functionality
 Library    SeleniumLibrary
+Library    Collections
 Resource    ../Resourcers/LoginPage.robot
 Resource    ../Resourcers/HomePage.robot
 
@@ -15,6 +16,7 @@ ${description}    xpath=(//textarea[@class='MuiInputBase-input MuiOutlinedInput-
 ${slug}    name:slug
 ${image}    xpath=(//input[@type='file'])[1]
 ${logo}    xpath=(//input[@type='file'])[2]
+@{service_names}    Create List
 
 
 *** Keywords ***
@@ -86,6 +88,18 @@ verify whether the rows per page is working
     Click Element    xpath=//li[@data-value="${rows_per_page}"]
     ${text}=    Get Element Count    xpath=//tr[@class='MuiTableRow-root MuiTableRow-hover css-1gqug66']
     Should Be Equal As Integers    ${text}    ${rows_per_page}
+
+Storing the Business Service names in list and printing them
+    HomePage.Click the Home Button
+    HomePage.Click the Service Button
+    HomePage.Click the Business Services
+    ${text}=    Get Element Count    xpath=//td[@class='MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-q34dxg'][1]
+    Log To Console    Total Business Services: ${text}
+    FOR    ${i}    IN RANGE    1    ${text}+1
+        ${service_name}=    Get Text    xpath=(//td[@class='MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-q34dxg'][1])[${i}]
+        Append To List    ${service_names}    ${service_name}
+    END
+    Log To Console    \nBusiness Service Names List: ${service_names}
 
 
 
