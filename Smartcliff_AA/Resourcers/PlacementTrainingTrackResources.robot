@@ -20,7 +20,7 @@ ${module_level_training_hours_field}    xpath:(//input[@class='MuiInputBase-inpu
 ${module_level_traing_days_field}    xpath:(//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq'])[9]
 ${remarks_field}    xpath:(//textarea[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-u36398'])[3]
 ${submit_training_track_btn}    xpath://form[@class='MuiBox-root css-yd8sa2']/button[3]
-
+${delete_btn}    css:button[class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium css-1ecefdc']
 
 *** Keywords ***
 
@@ -63,6 +63,7 @@ Enter the placement details
 
     # Wait Until Element Is Visible    ${submit_training_track_btn}
     Click Element    ${submit_training_track_btn}
+    Page Should Contain    ${track_name}
     # Sleep    5s
 
 Select From AutoCompleting
@@ -83,9 +84,19 @@ Deleting the track name
         IF    '${remove_text}' == '${track_name_remove}'
             ${delete_name} =    Set Variable    xpath://tbody[@class='MuiTableBody-root css-1xnox0e']/tr[${i}]/td/div/button[2]
             Click Element    ${delete_name}
-            
         END
         ${i} =    Evaluate    ${i}+2
-        
+    END
+    Click Element    ${delete_btn}
+
+Retrive the data from table
+    @{list_of_Placement_details} =    Get WebElements    xpath://table[@class='MuiTable-root css-1owb465']/tbody/tr/td[2]
+    # ${i} =    Set Variable    1
+    FOR    ${placement}    IN    @{list_of_Placement_details}
+        # ${Head} =    Get WebElement    xpath://tr[@class='MuiTableRow-root MuiTableRow-head css-ome0r3']/th[${i}]
+        # ${text} =    Get Text    ${Head}
+        ${text} =    Get Text    ${placement}
+        Log To Console    >>>>${text}
+        # ${i} =    Evaluate    ${i}+1
     END
     

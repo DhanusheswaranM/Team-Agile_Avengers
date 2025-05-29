@@ -9,9 +9,9 @@ Resource    ../Resourcers/PlacementTrainingTrackResources.robot
 
 *** Variables ***
 ${placement_track_name}    Full Stack
-${track_name_remove}    Institution
+${track_name_remove}    Soft Skills Training    
 
-*** Test Cases ***
+*** Test Cases ***                                       
 
 Verify the Placement Training Track Page
     [Tags]    Regression
@@ -26,8 +26,20 @@ Search the placement Track name
     PlacementTrainingTrackResources.Searching the Placement Track Name    ${placement_track_name}
 
 Delete the Track name
+    [Tags]    Regression
+    HomePage.Common Login
+    HomePage.Click the Placement Training Track
+    ${Is_Present} =    Run Keyword And Return Status    Page Should Contain    ${track_name_remove}
+    # Page Should Contain    ${track_name_remove}    ${Is_Present} = True
+    IF    ${Is_Present}
+        PlacementTrainingTrackResources.Deleting the track name    ${track_name_remove}
+        Page Should Contain    Training Track Panel
+    ELSE    
+        Log To Console    >>>${track_name_remove} is not it the list  
+    END
+    
+Retriving the Placement Details from the table
     [Tags]    Sanity
     HomePage.Common Login
     HomePage.Click the Placement Training Track
-    PlacementTrainingTrackResources.Deleting the track name    ${track_name_remove}
-
+    PlacementTrainingTrackResources.Retrive the data from table
