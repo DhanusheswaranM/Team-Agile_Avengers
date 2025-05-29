@@ -13,7 +13,8 @@ ${business_service_name}    B2B
 ${service_name}    HTD
 ${stack_naming}    Testing
 ${stack_count}    455
-${search_stack_name}    Software
+${search_stack_name}    Assessment
+${Table_Count}    5
 
 *** Test Cases ***
 
@@ -33,7 +34,6 @@ Edit already existing Execution By Client
     HomePage.Click the Execution By Client
     ExecutionByClientPage.Check the Execution By Client Page
     ExecutionByClientPage.Edit and Check the Stack name    ${stack_Name}
-    # ExecutionByClientPage.Edit and Check the Stack name
     ${text} =    ExecutionByClientPage.Get Stack Name
     Should Be Equal As Strings    '${text}'    '${stack_Name}'
 
@@ -57,4 +57,28 @@ Search the Stack Name
     HomePage.Click the Service Button
     HomePage.Click the Execution By Client
     Page Should Contain    Execution Highlights Control
-    # ExecutionByClientPage.Searching the stack Name    ${search_stack_name}
+    ExecutionByClientPage.Searching the stack Name    ${search_stack_name}
+
+Validate Rows Per Page in Execution By Client
+    [Tags]    UAT
+    LoginPage.Login with valid credentials    ${common_user}    ${common_password}
+    HomePage.Click the Home Button
+    HomePage.Click the Service Button
+    HomePage.Click the Execution By Client
+    Page Should Contain    Execution Highlights Control
+    ExecutionByClientPage.Validate Rows Per Page    ${Table_Count}
+    ${actual} =    ExecutionByClientPage.Count Of Table
+    ${actual_count} =    Convert To String    ${actual}
+    Should Be Equal    ${actual_count}    ${Table_Count}
+
+Validate Navigating back from add execution by client to servicepage
+    [Tags]    Sanity
+    LoginPage.Login with valid credentials    ${common_user}    ${common_password}
+    HomePage.Click the Home Button
+    HomePage.Click the Service Button
+    HomePage.Click the Execution By Client
+    ExecutionByClientPage.Click the Add Highlights
+    Page Should Contain    Add Form
+    ExecutionByClientPage.Navigating Back
+    Page Should Contain    Execution Highlights Control
+
