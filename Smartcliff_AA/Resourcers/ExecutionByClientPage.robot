@@ -2,6 +2,7 @@
 Documentation    This resource file is for reusable keywords and variables for Execution By Client page 
 Library    SeleniumLibrary
 
+
 *** Variables ***
 ${search_Highlight}    xpath://input[@placeholder='Search execution highlights...']
 ${add_Highlight}    xpath://div[@id='root']/div[1]/main/div[2]/div[1]/div/div[2]/button
@@ -52,6 +53,7 @@ Get Stack Name
 
 Add New Execution By Client
     [Arguments]    ${business_service_name}    ${service_name}    ${stack_naming}    ${stack_count}
+    
     Select From Autocomplete    ${business_service_field}    ${business_service_name}
     Select From Autocomplete    ${service_Field}    ${service_name}
     ${filepath} =    Set Variable    css:input[type="file"][accept="image/*"]
@@ -71,8 +73,6 @@ Select From Autocomplete
 
 Searching the stack Name 
     [Arguments]    ${Search_stack_name}
-    # Click Element    ${search_Highlight}
-    # Execute JavaScript    arguments[0].click();    ${search_Highlight}
     Input Text    ${search_Highlight}    ${Search_stack_name}
     Page Should Contain    ${Search_stack_name}
 
@@ -80,16 +80,6 @@ Validate Rows Per Page
     [Arguments]    ${Table_Count}
     Scroll Element Into View    ${dropDown_Number}
     Click Element    ${dropDown_Number}
-    # ${i} =    Set Variable    1
-    # @{list_Of_Rows} =    Get WebElements    xpath://ul[@id=':r4:']
-    # FOR    ${Count_Table}    IN    @{list_Of_Rows}
-    #     ${Number} =    Get Text    ${Count_Table}
-    #     IF    '${Number}' == '${Count_Table}'
-    #         Click Element    xpath://ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li[${i}]
-    #         BREAK
-    #     END
-    #     ${i} =    Evaluate    ${i}+1
-    # END
     Click Element    xpath://ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li[1]
     Sleep    3s
 

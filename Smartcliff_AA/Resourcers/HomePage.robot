@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation    This resource file is for the common home page functionality
 Library    SeleniumLibrary
+Resource    ../Resourcers/LoginPage.robot
+Resource    ../Resourcers/GenericResources.robot
 
 *** Variables ***
 ${Home_Btn}    css:svg[data-testid='MenuIcon']
@@ -40,3 +42,9 @@ Click the Execution By Domain
 
 Click the Placement Training Track
     Click Element    ${placement_training_track}
+
+
+Common Login
+    LoginPage.Login with valid credentials    ${common_user}    ${common_password}
+    Click the Home Button
+    Click the Service Button
