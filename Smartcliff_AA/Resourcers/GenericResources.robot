@@ -12,10 +12,11 @@ ${common_password}    dhyula@333
 *** Keywords ***
 
 Open the website with the browser
-    Open Browser    ${url}    ${browser}
+    Open Browser    ${url}    ${browser}    
     Maximize Browser Window
-    Set Browser Implicit Wait    10s
-    Set Selenium Implicit Wait    10s
+    Set Browser Implicit Wait    15s
+    Set Selenium Implicit Wait    15s
+    Set Selenium Timeout    15s
 
 Login with valid credentials
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
