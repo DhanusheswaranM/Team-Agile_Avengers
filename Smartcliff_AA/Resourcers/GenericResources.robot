@@ -5,7 +5,7 @@ Resource    ../Resourcers/LoginPage.robot
 
 *** Variables ***
 ${url}    https://smart-cliff-admin.vercel.app/
-${browser}    chrome
+${browser}    chrome    
 ${common_user}    2k21eee09@kiot.ac.in
 ${common_password}    dhyula@333
 
