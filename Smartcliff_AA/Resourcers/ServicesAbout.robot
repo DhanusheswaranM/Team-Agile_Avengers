@@ -41,7 +41,6 @@ Verify HTD search Result displayed
 
 Click the Add new service about button
     Click Element    ${add_serviceabt_btn}
-    # Click Button    //input[@id='Business Services']
 
 Enter dropdown values for adding new service about
      # Select From List By Value    //input[@id='Business Services']    B2B       
@@ -50,7 +49,7 @@ Enter dropdown values for adding new service about
     Click Element   xpath=//input[@id='service']
     # Input Text    xpath=//input[@id='service']    Internship
     # Click Element    xpath=//input[@value='Internship']
-    Click Element    xpath=//li[text()='Internship']
+    Click Element      xpath=//li[text()='COE']
 
 Fill the services about details 
     [Arguments]    ${heading}     ${sub_heading}      ${feature_title}      
@@ -82,9 +81,8 @@ click confirm delete
     Click Element    ${confirm_dlt}
 
 Edit the value of the feature title
-    # Click Element    ${feature_title}    
-    Press Keys    ${feature_title}    CTRL+A
-    Press Keys    ${feature_title}    BACKSPACE
+    Click Element    ${feature_title}    
+    Press Keys   ${feature_title}    CTRL+A    BACKSPACE
     Input Text    ${feature_title}    This is edited feature title   
     
 verify page is updated
@@ -93,3 +91,6 @@ verify page is updated
 
 verify the data deleted
     Page Should Not Contain    DemoHeading
+
+
+
