@@ -90,3 +90,30 @@ Count Of Table
 
 Navigating Back
     Click Element    ${back_Option}
+
+Delete the stack
+    [Arguments]    ${delete_stack_name}
+    Log To Console    >>>Editing stack:${delete_stack_name}
+    @{list_of_Stack_Name} =    Get WebElements    xpath://table[@class='MuiTable-root css-1owb465']/tbody/tr/td[1]
+    ${i}=    Set Variable    1
+    ${is_present} =    Set Variable    False
+    FOR    ${stack_names}    IN    @{list_of_Stack_Name}
+        ${text} =    Get Text    ${stack_names}
+        Log To Console    >>>Editing stack name:${text}
+        
+        IF    '${text}' == '${delete_stack_name}'
+            Log To Console    >>>>Stack name is matched ${text}    ${delete_stack_name}
+            ${delete_btn}=    Set Variable    xpath://table[@class='MuiTable-root css-1owb465']/tbody/tr[${i}]/td[3]/div/button[2]
+            Click Element    ${delete_btn}
+            Sleep    2s
+            Click Element    xpath://div[@class='MuiDialogActions-root MuiDialogActions-spacing css-33pgcr']/button[2]
+            ${is_present} =    Set Variable    True
+            BREAK
+        
+        END
+        ${i}=    Evaluate    ${i}+1
+     
+    END
+    IF    not ${is_present}
+        Log To Console    >>>>There is no stack name to delete
+    END
