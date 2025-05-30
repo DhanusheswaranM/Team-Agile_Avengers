@@ -47,7 +47,7 @@ Enter process heading
     Input Text    ${process_heading}    demo process heading
 
 Upload image for adding process data
-    [Arguments]    ${img}    ${img_path}
+    [Arguments]    ${img_path}
     ${upload_input}=    Set Variable    xpath://input[@type='file']    
     Choose File    ${upload_input}    ${img_path}
     Sleep    5
@@ -64,9 +64,8 @@ Click the Add new service process button
 Enter dropdown values for adding new service process   
     Click Element    xpath=//input[@id='business-services']
     Click Element    xpath=//li[text()='CSR']
-    Click Element   xpath=//input[@id='service']
-    Click Element    xpath=//input[@value="Degree programming"]     
-    # ...    xpath=//li[text()='COE']  
+    Click Element   xpath=//input[@id='service']    
+    Click Element    xpath=//li[text()='Degree programming']  
 
 Click on submit process button
     Scroll Element Into View    ${submit_process_btn}    
@@ -105,9 +104,9 @@ verify process page is updated
     Set Selenium Implicit Wait    5   
     Page Should Contain    This is edited process heading         
 
-click row dropdown and get row count
+click row dropdown of process page and get row count
     Click Element    ${row_dropdown}
-    Sleep    5s
+    Set Selenium Implicit Wait    5
     Click Element    ${row_value}
     ${no_of_rows}=    Get WebElements    //tbody[@class='MuiTableBody-root css-1xnox0e']//tr
     ${count_of_rows}    Get Length    ${no_of_rows}
