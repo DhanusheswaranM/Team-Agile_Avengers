@@ -12,13 +12,12 @@ ${heading}    //input[@name='heading']
 ${sub_heading}    //input[@name='subHeading']
 ${feature_title}    //input[@name='title']
 ${submit_btn}    //button[contains(text(),'Submit Data')]
-# ...    //button[@type='submit']
 ${edit_btn}    (//div[@class='MuiBox-root css-1i27l4i'])[4]//button[1]
 ${update_btn}    //button[contains(text(),'Update Service')]
 ${delete_btn}    (//button[@aria-label='Delete'])[5]
 ${img_path}     ${CURDIR}${/}Images${/}image.png
 # ${img}    (//input[@type="file"])[1]    
-${img}    //*[@id="root"]/div[1]/main/main/form/div/div[5]/div/div/div[4]/div/div[1]/svg
+# ${img}    //*[@id="root"]/div[1]/main/main/form/div/div[5]/div/div/div[4]/div/div[1]/svg
 ${demo_desc}    //textarea[@name="description"]
 ${confirm_dlt}    //button[contains(text(),'Delete')]
 ${edit_specific}    (//div[@class='MuiBox-root css-1i27l4i'])[1]//button[1]
@@ -45,13 +44,10 @@ Verify HTD search Result displayed
 Click the Add new service about button
     Click Element    ${add_serviceabt_btn}
 
-Enter dropdown values for adding new service about
-     # Select From List By Value    //input[@id='Business Services']    B2B       
+Enter dropdown values for adding new service about  
     Click Element    xpath=//input[@id='Business Services']
     Click Element    xpath=//li[text()='B2I']
     Click Element   xpath=//input[@id='service']
-    # Input Text    xpath=//input[@id='service']    Internship
-    # Click Element    xpath=//input[@value='Internship']
     Click Element      xpath=//li[text()='COE']
 
 Fill the services about details 
@@ -62,10 +58,9 @@ Fill the services about details
     Input Text    ${demo_desc}    Demo description
   
 Upload Image File
-    [Arguments]    ${img}    ${img_path}
+    [Arguments]    ${img_path}
     ${upload_input}=    Set Variable    xpath://input[@type='file']    
     Choose File    ${upload_input}    ${img_path}
-    Sleep    5
     Click Button    ${submit_btn}  
 
 Click on the results edit button 
@@ -104,7 +99,7 @@ verify the data deleted
 
 click row dropdown and get row count
     Click Element    ${row_dropdown}
-    Sleep    5s
+    Set Selenium Implicit Wait    5    
     Click Element    ${row_value}
     ${no_of_rows}=    Get WebElements    //tbody[@class='MuiTableBody-root css-1xnox0e']//tr
     ${count_of_rows}    Get Length    ${no_of_rows}
