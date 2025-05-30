@@ -5,14 +5,14 @@ Resource    ../Resourcers/LoginPage.robot
 
 *** Variables ***
 ${url}    https://smart-cliff-admin.vercel.app/
-${browser}    chrome    
+${browser}    chrome
 ${common_user}    2k21eee09@kiot.ac.in
 ${common_password}    dhyula@333
 
 *** Keywords ***
 
 Open the website with the browser
-    Open Browser    ${url}    ${browser}    
+    Open Browser    ${url}    ${browser}
     Maximize Browser Window
     Set Browser Implicit Wait    15s
     Set Selenium Implicit Wait    15s

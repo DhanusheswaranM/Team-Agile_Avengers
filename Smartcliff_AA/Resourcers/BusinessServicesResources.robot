@@ -115,6 +115,7 @@ Add new business service
     Wait Until Element Is Not Visible    xpath=//td[text()='${new_business_service_name}']    timeout=15s
     ${deleted}=    Run Keyword And Return Status    Element Should Not Be Visible    xpath=//td[text()='${new_business_service_name}']
     Run Keyword If    not ${deleted}    Fail    Business service '${new_business_service_name}' was not deleted
+    Scroll Element Into View    xpath=//div[@class='MuiBox-root css-1mzb49p']
 
 search Business Service
     [Arguments]    ${business_service_name}
@@ -148,8 +149,6 @@ Storing the Business Service names in list and printing them
         Append To List    ${service_names}    ${service_name}
     END
     Log To Console    \nBusiness Service Names List: ${service_names}
-
-
 
 
 
