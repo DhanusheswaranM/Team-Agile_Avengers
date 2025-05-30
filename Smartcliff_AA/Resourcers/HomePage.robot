@@ -5,7 +5,7 @@ Resource    ../Resourcers/LoginPage.robot
 Resource    ../Resourcers/GenericResources.robot
 
 *** Variables ***
-${Home_Btn}    xpath://div[@id='root']/div/header/div/button[1]/span
+${Home_Btn}    css:svg[data-testid='MenuIcon']
 ${service_Btn}    xpath://div[@id='drawer']/div/ul/li[2]//following-sibling::li[1]/div[1]
 ${business_service}    xpath://div[@id='drawer']/div/ul/li[2]//following-sibling::li[1]/div[2]/div/div/div/div[1]
 ${services}    xpath://div[@id='drawer']/div/ul/li[2]//following-sibling::li[1]/div[2]/div/div/div/div[2]
