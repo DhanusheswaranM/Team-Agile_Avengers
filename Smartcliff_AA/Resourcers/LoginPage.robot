@@ -13,3 +13,18 @@ Login with valid credentials
     Input Text    ${user_email_field}    ${common_user}
     Input Password    ${user_password}    ${common_password}
     Click Button    ${login_btn}
+
+Verify Email required error message
+    Page Should Contain Element    xpath=//p[contains(text(),'Email is required')]
+   
+Verify password required error message
+    Page Should Contain Element    xpath=//p[contains(text(),'Password is required')]
+
+Verify wrong username error message
+    Page Should Contain Element    //div[contains(text(),'Incorrect password or email')]
+
+Verify wrong password error message
+    Page Should Contain Element    //div[contains(text(),'Incorrect password or email')]
+
+Verify login successful
+    Page Should Contain    Welcome to the Admin Panel!

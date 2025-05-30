@@ -25,7 +25,7 @@ Add a Service process data
     Click the Add new service process button
     Enter dropdown values for adding new service process
     Enter process heading
-    Upload image for adding process data      ${img}    ${img_path}
+    Upload image for adding process data     ${img_path}
     Click on submit process button
 
 Edit the service process data
@@ -46,5 +46,9 @@ Verify you can delete the data
     Sleep    5
     verify the data deleted
     
+Verify the Row count are displayed correctly
+    loginPage.Login with valid credentials    ${common_user}    ${common_password}
+    Open the Services About page
+    click row dropdown of process page and get row count
 
 

@@ -30,7 +30,5 @@ Fill the services about details with csv
     Input text    ${sub_heading}     ${subheading_csv}
     Input Text    ${feature_title}      ${feature_title_csv}
     Input Text    ${demo_desc}    ${decription_csv} 
-    Upload Image File    ${img}    ${img_path}   
-    Click Button    ${submit_btn}
-    Set Selenium Implicit Wait    5
-    Page Should Contain    DemoHeadingcsv
+    Upload Image File        ${img_path}    
+    Wait Until Page Contains     DemoHeadingcsv     timeout=10s
