@@ -13,7 +13,7 @@ ${sub_heading}    //input[@name='subHeading']
 ${feature_title}    //input[@name='title']
 ${submit_btn}    //button[contains(text(),'Submit Data')]
 # ...    //button[@type='submit']
-${edit_btn}    (//div[@class='MuiBox-root css-1i27l4i'])[5]//button[1]
+${edit_btn}    (//div[@class='MuiBox-root css-1i27l4i'])[4]//button[1]
 ${update_btn}    //button[contains(text(),'Update Service')]
 ${delete_btn}    (//button[@aria-label='Delete'])[5]
 ${img_path}     ${CURDIR}${/}Images${/}image.png
@@ -22,6 +22,8 @@ ${img}    //*[@id="root"]/div[1]/main/main/form/div/div[5]/div/div/div[4]/div/di
 ${demo_desc}    //textarea[@name="description"]
 ${confirm_dlt}    //button[contains(text(),'Delete')]
 ${edit_specific}    (//div[@class='MuiBox-root css-1i27l4i'])[1]//button[1]
+${row_value}    //li[@data-value='5']
+${row_dropdown}    //div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input css-rmmij8']
 
 ***keywords***
 Open the Services About page 
@@ -70,7 +72,7 @@ Click on the results edit button
     Click Element    ${edit_specific}
 
 Search edit heading in the searchbox 
-    Input Text       ${search_box}    DemoHeading
+    Input Text       ${search_box}    B2B Heading for testing
 
 verify the data added
     Page Should Contain    DemoHeading   
@@ -97,7 +99,18 @@ verify page is updated
     Page Should Contain    This is edited feature title         
 
 verify the data deleted
-    Page Should Not Contain    DemoHeading
+    Set Selenium Implicit Wait    5 
+    Page Should Not Contain    DemoHeadingcsv
+
+click row dropdown and get row count
+    Click Element    ${row_dropdown}
+    Sleep    5s
+    Click Element    ${row_value}
+    ${no_of_rows}=    Get WebElements    //tbody[@class='MuiTableBody-root css-1xnox0e']//tr
+    ${count_of_rows}    Get Length    ${no_of_rows}
+    Log To Console    Total row count:${count_of_rows}   
+
+
 
 
 
