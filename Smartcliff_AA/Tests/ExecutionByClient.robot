@@ -15,6 +15,8 @@ ${stack_naming}    Testing
 ${stack_count}    455
 ${search_stack_name}    Assessment
 ${Table_Count}    5
+${delete_stack_name}    DUMMY
+
 
 *** Test Cases ***
 
@@ -67,7 +69,7 @@ Add new Execution By Client
 
 
 Search the Stack Name
-    [Tags]    Sanity
+    [Tags]    Regression
     HomePage.Common Login
     HomePage.Click the Execution By Client
     Page Should Contain    Execution Highlights Control
@@ -84,7 +86,7 @@ Validate Rows Per Page in Execution By Client
     Should Be Equal    ${actual_count}    ${Table_Count}
 
 Validate Navigating back from add execution by client to servicepage
-    [Tags]    Sanity
+    [Tags]    UAT
     HomePage.Common Login
     HomePage.Click the Execution By Client
     ExecutionByClientPage.Click the Add Highlights
@@ -92,3 +94,8 @@ Validate Navigating back from add execution by client to servicepage
     ExecutionByClientPage.Navigating Back
     Page Should Contain    Execution Highlights Control
 
+Delete the stack name
+    [Tags]    Sanity
+    HomePage.Common Login
+    HomePage.Click the Execution By Client
+    ExecutionByClientPage.Delete the stack    ${delete_stack_name}
