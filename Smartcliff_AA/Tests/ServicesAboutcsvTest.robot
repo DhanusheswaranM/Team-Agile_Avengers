@@ -21,6 +21,7 @@ Verify you can add the valid data using csv      ${Heading_csv}    ${subheading_
 
 *** Keywords ***
 Fill the services about details with csv 
+    [Tags]    regression 
     [Arguments]    ${Heading_csv}    ${subheading_csv}    ${feature_title_csv}    ${decription_csv}
     loginPage.Login with valid credentials    ${common_user}    ${common_password}
     Open the Services About page
