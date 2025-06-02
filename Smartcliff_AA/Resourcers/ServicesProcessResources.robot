@@ -70,9 +70,9 @@ Enter dropdown values for adding new service process
 Click on submit process button
     Scroll Element Into View    ${submit_process_btn}    
     Click Element    ${submit_process_btn}
-    Set Selenium Implicit Wait    10s
-    Page Should Contain    demo process heading    
-
+    # Set Selenium Implicit Wait    10s
+    Wait Until Page Contains    demo process heading    timeout=10s
+    
 Click on the process edit button
     Click Element    ${edit_specific}
 
