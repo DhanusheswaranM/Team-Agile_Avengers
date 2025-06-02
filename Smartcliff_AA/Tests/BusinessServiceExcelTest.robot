@@ -19,6 +19,7 @@ validate add business service with invalid data  ${name1}    ${title1}    ${desc
 
 *** Keywords ***
 validate add business service with invalid data
+    [Tags]    regression    data-driven    excel
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
     [Arguments]    ${name1}    ${title1}    ${description1}    ${slug1}
     HomePage.Click the Home Button
@@ -39,4 +40,3 @@ validate add business service with invalid data
     ELSE IF    '${slug1}' == ''
         Element Text Should Be    xpath=//p[text()='Slug is required']    Slug is required
     END
-
