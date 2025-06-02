@@ -98,7 +98,6 @@ verify the data deleted
     # Page Should Not Contain    DemoHeadingcsv
     Wait Until Page Does Not Contain    DemoHeadingcsv    timeout=10s
 
-
 click row dropdown and get row count
     Click Element    ${row_dropdown}
     Set Selenium Implicit Wait    5    

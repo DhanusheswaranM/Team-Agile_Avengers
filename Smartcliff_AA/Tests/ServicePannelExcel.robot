@@ -18,6 +18,7 @@ validate add service panel with invalid data  ${Title1}    ${Description1}    ${
 
 *** Keywords ***
 validate add service panel with invalid data
+    [Tags]    regression    data-driven    excel
     LoginPage.Login with valid credentials    ${common_user}    ${common_password}
     [Arguments]    ${Title1}    ${Description1}    ${slug1}
     HomePage.Click the Home Button
@@ -35,4 +36,3 @@ validate add service panel with invalid data
     ELSE IF    '${slug1}' == ''
         Element Text Should Be    xpath=//p[text()='Slug is required']    Slug is required
     END
-
