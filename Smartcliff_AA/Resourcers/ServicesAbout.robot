@@ -90,12 +90,14 @@ Edit the value of the feature title
     Input Text    ${feature_title}    This is edited feature title   
     
 verify page is updated
-    Set Selenium Implicit Wait    5   
-    Page Should Contain    This is edited feature title         
+    # Set Selenium Implicit Wait    5   
+    Wait Until Page Contains    This is edited feature title    timeout=10s     
 
 verify the data deleted
-    Set Selenium Implicit Wait    5 
-    Page Should Not Contain    DemoHeadingcsv
+    # Set Selenium Implicit Wait    5 
+    # Page Should Not Contain    DemoHeadingcsv
+    Wait Until Page Does Not Contain    DemoHeadingcsv    timeout=10s
+
 
 click row dropdown and get row count
     Click Element    ${row_dropdown}

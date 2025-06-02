@@ -92,7 +92,7 @@ click process confirm delete
     Click Element    ${confirm_dlt}
 
 verify the process data deleted
-    Page Should Not Contain    Corporate social responsibility
+    Wait Until Page Does Not Contain    Corporate social responsibility    timeout=10s
     
 
 Edit the value of the process heading
@@ -101,8 +101,7 @@ Edit the value of the process heading
     Input Text    ${process_heading}      This is edited process heading   
     
 verify process page is updated
-    Set Selenium Implicit Wait    5   
-    Page Should Contain    This is edited process heading         
+    Wait Until Page Contains   This is edited process heading    timeout=10s
 
 click row dropdown of process page and get row count
     Click Element    ${row_dropdown}
